@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="text-center ">
+ 
+  <h1>{{pet.title}}</h1>
+  <h2 class="my-2 h5 text-muted">{{pet.data}}</h2>
+ 
+  <img class='pet_img' src="{{pet.image.url}}" alt="{{pet.title}}" class="img-fluid">
+   
+
+  <div class="my-4">
+
+  {{pet.description|safe}}
+ 
+  </div>
+   
+  <a href="javascript:history.go(-1)" class="btn btn-danger">Назад</a>
+</div>
+<style>
+ 
+    
+  .pet_img{
+      height: 400px; /* Задайте желаемую высоту для изображения */
+    }
+    
+    
+</style>
+{% endblock %}

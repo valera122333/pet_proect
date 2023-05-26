@@ -1,0 +1,51 @@
+{% load static %}
+
+
+
+<div class="container">
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+        <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+        <span class="fs-4">Главная</span>
+      </a>
+
+      
+          
+
+
+
+
+           {% if user.is_authenticated %}
+      <li class="nav-item"><a class="nav-link text-success">Привет, {{ user.username }}.</a></li> 
+      {% if user.is_superuser %}
+        <li class="nav-item"><a class="nav-link" href={% url 'admin:index' %}>Админка</a></li> 
+        
+      {% else %}
+      <li class="nav-item"><a class="nav-link" href={% url 'pet_list' %}>Добавить питомца</a></li> 
+    
+      {% endif %}
+      
+      <li class="nav-item"><a class="btn btn-danger" href={% url 'logout' %}>Выход</a></li>   
+    {% else %}
+    <li class="nav-item"><a class="nav-link" href={% url 'register' %}>Регистрация</a></li> 
+    <li class="nav-item"><a class="nav-link" href={% url 'login' %}>Авторизация</a></li> 
+    {% endif %}
+           
+    </header>
+  </div>
+ 
+  <div class="b-example-divider"></div>
+
+
+<style>
+    .container{
+    font-size: 20px;
+    }
+    .img_head{
+        height:32px;
+        width:64px;
+    }
+    li{
+      list-style:none;
+    }
+</style>

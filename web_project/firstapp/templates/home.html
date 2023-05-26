@@ -1,0 +1,45 @@
+{% extends 'layout.html' %}
+{% load static %}
+
+{%block content %}
+
+<div class="container">
+    <div class="row my-2 text-center">
+      <h3 class='text-center text-primary'>Ваши питомцы</h3>
+      {% for pet in pets %}
+      <div class="col-md-4 p-lg-3">
+        <div class="card d-flex flex-column align-items-stretch">
+          <h5 class="min_description">{{ pet.title }}</h5>
+          <div class="card-image" >
+            <img class="img-fluid" src="{{ pet.image.url }}" alt="{{ pet.title }}">
+          </div>
+          <div class="card-body">
+            <p>{{ pet.description }}</p>
+            <p>{{ pet.data }}</p>
+            <a class="btn btn-primary" href="{% url 'pet_detail' pet_id=pet.id %}">Подробнее</a>
+            <a class="btn btn-success" href="{% url 'edit_pet' pet_id=pet.id %}">Редактировать</a>
+            <a class="btn btn-danger" href="{% url 'delete_pet' pk=pet.id %}">Удалить</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  
+
+  <style>
+    .card {
+        height: 100%;
+        width: 100%;
+      }
+      
+      .card-image {
+        height: 300px; /* Задайте желаемую высоту для изображения */
+      }
+      
+      .card-body {
+        flex: 1;
+      }
+  </style>
+
+{% endblock %}
